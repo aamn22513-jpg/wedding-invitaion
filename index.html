@@ -136,11 +136,33 @@
     .footer{padding:22px; text-align:center; color:var(--muted); font-size:13px}
     .petals span{position:fixed; top:-40px; color:rgba(244,224,166,.38); animation:fall linear infinite; z-index:1; pointer-events:none}
     @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+    .music-control{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      z-index:20;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      border:1px solid rgba(217,184,111,.55);
+      background:linear-gradient(135deg, rgba(244,224,166,.96), rgba(217,184,111,.96));
+      color:#1b1609;
+      font-size:22px;
+      cursor:pointer;
+      box-shadow:0 14px 35px rgba(0,0,0,.35);
+      display:none;
+      align-items:center;
+      justify-content:center;
+    }
+    .music-control.show{display:flex}
+
     @media(min-width:700px){.parents{grid-template-columns:1fr 1fr}.hero-card{padding:58px 44px}.intro-card{padding:58px 40px}}
   </style>
 </head>
 <body>
   <div class="petals" aria-hidden="true"></div>
+  <button class="music-control" id="musicBtn" onclick="toggleMusic()" aria-label="تشغيل أو إيقاف الموسيقى">🎵</button>
 
   <section class="intro" id="intro">
     <div class="intro-card">
@@ -197,8 +219,93 @@
 
   <script>
     const intro = document.getElementById('intro');
+    const musicBtn = document.getElementById('musicBtn');
+
+    let audioCtx, masterGain, musicTimer, musicPlaying = false;
+    let noteIndex = 0;
+
+    // موسيقى شرقية خفيفة مولدة بالكود - بدون ملف MP3 وبدون حقوق
+    const melody = [
+      392,440,493.88,523.25,493.88,440,392,349.23,
+      392,440,523.25,587.33,523.25,493.88,440,392,
+      329.63,349.23,392,440,392,349.23,329.63,293.66
+    ];
+
+    function playTone(freq, duration=0.38){
+      if(!audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now);
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1200, now);
+
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.14, now + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + duration + 0.03);
+    }
+
+    function playBeat(){
+      if(!audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(115, now);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.13);
+    }
+
+    function startMusic(){
+      if(musicPlaying) return;
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = masterGain || audioCtx.createGain();
+      masterGain.gain.value = 0.42;
+      masterGain.connect(audioCtx.destination);
+      musicPlaying = true;
+      musicBtn.textContent = '🔇';
+
+      const loop = () => {
+        if(!musicPlaying) return;
+        const freq = melody[noteIndex % melody.length];
+        playTone(freq, 0.36);
+        if(noteIndex % 2 === 0) playBeat();
+        noteIndex++;
+        musicTimer = setTimeout(loop, 430);
+      };
+      loop();
+    }
+
+    function stopMusic(){
+      musicPlaying = false;
+      clearTimeout(musicTimer);
+      musicBtn.textContent = '🎵';
+    }
+
+    function toggleMusic(){
+      if(musicPlaying) stopMusic();
+      else startMusic();
+    }
+
     function openInvitation(){
       intro.classList.add('hide');
+      musicBtn.classList.add('show');
+      startMusic();
       setTimeout(()=>{intro.style.display='none'}, 900);
     }
 
