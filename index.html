@@ -1,341 +1,389 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دعوة زفاف | أسامة & N</title>
-  <meta name="description" content="دعوة زفاف الدكتور أسامة عادل العنتري والآنسة N" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0e1411;
-      --green:#10251c;
-      --green2:#183528;
-      --gold:#d9b86f;
-      --gold2:#f4e0a6;
-      --cream:#fff8e8;
-      --muted:#d8c9a4;
-      --shadow:rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:'Cairo',system-ui,sans-serif;
-      color:var(--cream);
-      background: radial-gradient(circle at top, #22392c 0%, var(--bg) 45%, #070908 100%);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(217,184,111,.16), transparent 22%),
-        radial-gradient(circle at 90% 10%, rgba(244,224,166,.12), transparent 22%),
-        linear-gradient(120deg, rgba(255,255,255,.03), transparent 25%, rgba(255,255,255,.025));
-      z-index:0;
-    }
-    .page{position:relative; z-index:1}
-    .intro{
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:28px 18px;
-      text-align:center;
-      position:fixed; inset:0; z-index:10;
-      background:
-        linear-gradient(rgba(7,9,8,.62), rgba(7,9,8,.78)),
-        radial-gradient(circle at center, #203c2e 0%, #111713 55%, #050706 100%);
-      transition: opacity .9s ease, visibility .9s ease;
-    }
-    .intro.hide{opacity:0; visibility:hidden}
-    .intro-card{
-      width:min(620px, 94vw);
-      border:1px solid rgba(217,184,111,.35);
-      border-radius:32px;
-      padding:42px 24px;
-      background:linear-gradient(145deg, rgba(16,37,28,.86), rgba(255,255,255,.04));
-      box-shadow:0 30px 80px var(--shadow), inset 0 0 0 1px rgba(255,255,255,.05);
-      position:relative;
-      overflow:hidden;
-    }
-    .intro-card::before,.hero-card::before{
-      content:""; position:absolute; inset:18px; border:1px solid rgba(244,224,166,.22); border-radius:26px; pointer-events:none;
-    }
-    .small{color:var(--muted); letter-spacing:.5px; font-weight:600}
-    .bismillah{font-family:'Amiri',serif; font-size:26px; color:var(--gold2); margin-bottom:16px}
-    h1,h2,h3,p{margin:0}
-    .names{
-      font-family:'Amiri',serif;
-      font-size:clamp(42px, 10vw, 82px);
-      line-height:1.08;
-      color:var(--gold2);
-      margin:16px 0 8px;
-      text-shadow:0 10px 30px rgba(0,0,0,.4);
-    }
-    .amp{display:block; font-size:.48em; color:var(--gold); margin:10px 0}
-    .open-btn,.btn{
-      border:0; cursor:pointer; text-decoration:none;
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:14px 26px;
-      border-radius:999px;
-      color:#1b1609; background:linear-gradient(135deg, var(--gold2), var(--gold));
-      font-weight:800; box-shadow:0 12px 25px rgba(217,184,111,.25);
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .open-btn{margin-top:28px; font-size:17px}
-    .open-btn:hover,.btn:hover{transform:translateY(-2px); box-shadow:0 16px 30px rgba(217,184,111,.35)}
-    .hero{min-height:100vh; padding:34px 16px 60px; display:flex; align-items:center; justify-content:center}
-    .hero-card{
-      width:min(760px, 96vw);
-      position:relative; overflow:hidden;
-      border-radius:36px; padding:44px 22px;
-      text-align:center;
-      background:linear-gradient(145deg, rgba(17,42,30,.92), rgba(255,255,255,.045));
-      border:1px solid rgba(217,184,111,.32);
-      box-shadow:0 32px 90px rgba(0,0,0,.36);
-    }
-    .ornament{font-size:34px; color:var(--gold); margin:6px 0 16px}
-    .parents{display:grid; grid-template-columns:1fr; gap:12px; margin:22px auto; max-width:560px}
-    .parent-box{
-      border:1px solid rgba(217,184,111,.22);
-      background:rgba(255,255,255,.045);
-      border-radius:20px; padding:15px 12px;
-    }
-    .label{color:var(--muted); font-size:14px; margin-bottom:6px}
-    .value{font-weight:800; color:#fff4cf; font-size:20px}
-    .couple{
-      margin:30px 0;
-      font-family:'Amiri',serif;
-      color:var(--gold2);
-      font-size:clamp(34px, 8vw, 62px);
-      line-height:1.25;
-    }
-    .couple span{display:block}
-    .date-box{
-      display:inline-block;
-      padding:16px 22px;
-      border-radius:22px;
-      background:rgba(0,0,0,.18);
-      border:1px solid rgba(244,224,166,.24);
-      margin:8px 0 22px;
-    }
-    .date-main{font-size:23px; color:#fff; font-weight:800}
-    .date-sub{color:var(--muted); margin-top:4px}
-    .countdown{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:580px; margin:22px auto}
-    .time-card{background:rgba(255,255,255,.06); border:1px solid rgba(217,184,111,.18); border-radius:18px; padding:12px 6px}
-    .time-card strong{display:block; font-size:26px; color:var(--gold2)}
-    .time-card small{color:var(--muted)}
-    .venue{font-size:21px; font-weight:800; color:#fff4cf; margin:20px 0 8px}
-    .note{color:#f1e3bd; line-height:1.9; max-width:620px; margin:12px auto 24px}
-    .actions{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:22px}
-    .btn.secondary{background:transparent; color:var(--gold2); border:1px solid rgba(217,184,111,.5); box-shadow:none}
-    .footer{padding:22px; text-align:center; color:var(--muted); font-size:13px}
-    .petals span{position:fixed; top:-40px; color:rgba(244,224,166,.38); animation:fall linear infinite; z-index:1; pointer-events:none}
-    @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة زفاف | أسامة & N</title>
 
-    .music-control{
-      position:fixed;
-      left:16px;
-      bottom:16px;
-      z-index:20;
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      border:1px solid rgba(217,184,111,.55);
-      background:linear-gradient(135deg, rgba(244,224,166,.96), rgba(217,184,111,.96));
-      color:#1b1609;
-      font-size:22px;
-      cursor:pointer;
-      box-shadow:0 14px 35px rgba(0,0,0,.35);
-      display:none;
-      align-items:center;
-      justify-content:center;
-    }
-    .music-control.show{display:flex}
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    @media(min-width:700px){.parents{grid-template-columns:1fr 1fr}.hero-card{padding:58px 44px}.intro-card{padding:58px 40px}}
-  </style>
+<style>
+:root{
+  --cream:#fff8ef;
+  --beige:#ead8bd;
+  --gold:#c79b55;
+  --brown:#5b3d24;
+  --muted:#8c6a46;
+  --rose:#d9a0a7;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Cairo',sans-serif;
+  color:var(--brown);
+  background:linear-gradient(160deg,#fffaf0,#f2e3cc,#ead8bd);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:radial-gradient(circle,#fffaf0,#ead8bd);
+  transition:.9s;
+}
+.intro.hide{opacity:0;visibility:hidden}
+.card{
+  width:min(760px,94vw);
+  background:rgba(255,250,240,.88);
+  border:1px solid rgba(185,139,91,.35);
+  border-radius:38px;
+  padding:45px 22px;
+  box-shadow:0 30px 80px rgba(91,61,36,.18);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.card:before{
+  content:"";
+  position:absolute;
+  inset:18px;
+  border:1px solid rgba(199,155,85,.35);
+  border-radius:28px;
+  pointer-events:none;
+}
+.corner{
+  position:absolute;
+  font-size:34px;
+  opacity:.8;
+}
+.corner.left{top:18px;left:18px}
+.corner.right{bottom:18px;right:18px}
+.bismillah{
+  font-family:'Amiri',serif;
+  font-size:27px;
+  color:#9f7142;
+  margin-bottom:12px;
+  position:relative;
+}
+.small{
+  color:var(--muted);
+  font-weight:700;
+  position:relative;
+}
+.names{
+  font-family:'Amiri',serif;
+  font-size:clamp(46px,10vw,84px);
+  line-height:1.05;
+  color:var(--brown);
+  margin:18px 0;
+  position:relative;
+}
+.amp{
+  display:block;
+  color:var(--gold);
+  font-size:.5em;
+  margin:10px 0;
+}
+button,.btn{
+  border:0;
+  cursor:pointer;
+  text-decoration:none;
+  padding:14px 28px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#caa56c,#9f7142);
+  color:white;
+  font-weight:800;
+  box-shadow:0 15px 30px rgba(159,113,66,.25);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  position:relative;
+}
+.open-btn{margin-top:26px;font-size:17px}
+.main{
+  min-height:100vh;
+  padding:34px 16px 60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.parents{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  max-width:560px;
+  margin:24px auto;
+  position:relative;
+}
+.parent-box{
+  background:rgba(255,255,255,.5);
+  border:1px solid rgba(185,139,91,.25);
+  border-radius:22px;
+  padding:15px;
+}
+.label{color:var(--muted);font-size:14px;font-weight:700}
+.value{font-size:20px;font-weight:800}
+.couple{
+  font-family:'Amiri',serif;
+  font-size:clamp(35px,8vw,62px);
+  line-height:1.25;
+  margin:30px 0;
+  position:relative;
+}
+.couple span{display:block}
+.date-box{
+  display:inline-block;
+  padding:16px 24px;
+  border-radius:24px;
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(199,155,85,.35);
+  margin:8px 0 22px;
+  position:relative;
+}
+.date-main{font-size:23px;font-weight:900}
+.date-sub{color:var(--muted);font-weight:700}
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:590px;
+  margin:22px auto;
+  position:relative;
+}
+.time-card{
+  background:rgba(255,255,255,.5);
+  border:1px solid rgba(185,139,91,.2);
+  border-radius:18px;
+  padding:12px 6px;
+}
+.time-card strong{
+  display:block;
+  font-size:26px;
+  color:#9f7142;
+}
+.time-card small{
+  color:var(--muted);
+  font-weight:700;
+}
+.venue{
+  font-size:21px;
+  font-weight:900;
+  margin:20px 0 8px;
+  position:relative;
+}
+.note{
+  color:#6f4c2e;
+  line-height:1.9;
+  max-width:620px;
+  margin:12px auto 24px;
+  font-weight:600;
+  position:relative;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  position:relative;
+}
+.secondary{
+  background:transparent;
+  color:#9f7142;
+  border:1px solid rgba(159,113,66,.5);
+  box-shadow:none;
+}
+.music-control{
+  position:fixed;
+  left:16px;
+  bottom:16px;
+  z-index:30;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  padding:0;
+  background:linear-gradient(135deg,#fffaf0,#d8b78a);
+  color:#5b3d24;
+}
+.music-control.show{display:flex}
+.petals span{
+  position:fixed;
+  top:-50px;
+  z-index:1;
+  pointer-events:none;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-60px) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:.2}
+}
+.footer{
+  text-align:center;
+  padding:22px;
+  color:var(--muted);
+  font-size:13px;
+}
+@media(min-width:700px){
+  .parents{grid-template-columns:1fr 1fr}
+  .card{padding:60px 42px}
+}
+</style>
 </head>
+
 <body>
-  <div class="petals" aria-hidden="true"></div>
-  <button class="music-control" id="musicBtn" onclick="toggleMusic()" aria-label="تشغيل أو إيقاف الموسيقى">🎵</button>
 
-  <section class="intro" id="intro">
-    <div class="intro-card">
-      <div class="bismillah">بسم الله الرحمن الرحيم</div>
-      <p class="small">دعوة زفاف</p>
-      <h1 class="names">N <span class="amp">&</span> Osama</h1>
-      <p class="small">يسعدنا حضوركم ومشاركتكم فرحتنا</p>
-      <button class="open-btn" onclick="openInvitation()">فتح الدعوة</button>
-    </div>
-  </section>
+<div class="petals" id="petals"></div>
 
-  <main class="page">
-    <section class="hero">
-      <div class="hero-card">
-        <div class="bismillah">بسم الله الرحمن الرحيم</div>
-        <div class="ornament">❦</div>
-        <p class="small">يسر عائلتا</p>
-        <div class="parents">
-          <div class="parent-box">
-            <div class="label">والد العروسة</div>
-            <div class="value">الحاج محمد الليثي</div>
-          </div>
-          <div class="parent-box">
-            <div class="label">والد العريس</div>
-            <div class="value">الأستاذ عادل العنتري</div>
-          </div>
-        </div>
-        <p class="small">أن يدعوكم لمشاركتهم فرحتهم وحضور حفل زفاف</p>
-        <div class="couple">
-          <span>الآنسة N</span>
-          <span style="font-size:.55em;color:var(--gold);margin:8px 0">على</span>
-          <span>الدكتور أسامة عادل العنتري</span>
-        </div>
-        <div class="date-box">
-          <div class="date-main">السبت 27 / 6 / 2026</div>
-          <div class="date-sub">الساعة 9:00 مساءً</div>
-        </div>
-        <div class="countdown" id="countdown">
-          <div class="time-card"><strong id="days">0</strong><small>يوم</small></div>
-          <div class="time-card"><strong id="hours">0</strong><small>ساعة</small></div>
-          <div class="time-card"><strong id="minutes">0</strong><small>دقيقة</small></div>
-          <div class="time-card"><strong id="seconds">0</strong><small>ثانية</small></div>
-        </div>
-        <div class="venue">قاعة الرومانية - قرية الميرلاند</div>
-        <p class="note">حضوركم يشرفنا ويتمم فرحتنا، ونسأل الله أن يجعلها ليلة عامرة بالبهجة والسعادة.</p>
-        <div class="actions">
-          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=%D9%82%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D8%B1%D9%88%D9%85%D8%A7%D9%86%D9%8A%D8%A9%20%D9%82%D8%B1%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%8A%D8%B1%D9%84%D8%A7%D9%86%D8%AF" target="_blank" rel="noopener">افتح اللوكيشن</a>
-          <a class="btn secondary" href="https://wa.me/?text=%D8%A8%D8%A5%D8%B0%D9%86%20%D8%A7%D9%84%D9%84%D9%87%20%D8%AD%D8%A7%D8%B6%D8%B1%20%D8%AD%D9%81%D9%84%20%D8%B2%D9%81%D8%A7%D9%81%20%D8%A7%D9%84%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D8%A3%D8%B3%D8%A7%D9%85%D8%A9%20%D9%88%D8%A7%D9%84%D8%A2%D9%86%D8%B3%D8%A9%20N" target="_blank" rel="noopener">تأكيد الحضور</a>
-        </div>
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<section class="intro" id="intro">
+  <div class="card">
+    <div class="corner left">🌸</div>
+    <div class="corner right">🌸</div>
+    <div class="bismillah">بسم الله الرحمن الرحيم</div>
+    <p class="small">دعوة زفاف</p>
+    <h1 class="names">N <span class="amp">&</span> Osama</h1>
+    <p class="small">يسعدنا حضوركم ومشاركتكم فرحتنا</p>
+    <button class="open-btn" onclick="openInvitation()">فتح الدعوة</button>
+  </div>
+</section>
+
+<main class="main">
+  <div class="card">
+    <div class="corner left">🌸</div>
+    <div class="corner right">🌸</div>
+
+    <div class="bismillah">بسم الله الرحمن الرحيم</div>
+    <p class="small">يسر عائلتا</p>
+
+    <div class="parents">
+      <div class="parent-box">
+        <div class="label">والد العروسة</div>
+        <div class="value">الحاج محمد الليثي</div>
       </div>
-    </section>
-    <div class="footer">N & Osama Wedding Invitation</div>
-  </main>
+      <div class="parent-box">
+        <div class="label">والد العريس</div>
+        <div class="value">الأستاذ عادل العنتري</div>
+      </div>
+    </div>
 
-  <script>
-    const intro = document.getElementById('intro');
-    const musicBtn = document.getElementById('musicBtn');
+    <p class="small">أن يدعوكم لمشاركتهم فرحتهم وحضور حفل زفاف</p>
 
-    let audioCtx, masterGain, musicTimer, musicPlaying = false;
-    let noteIndex = 0;
+    <div class="couple">
+      <span>الآنسة N</span>
+      <span style="font-size:.55em;color:var(--gold);margin:8px 0">على</span>
+      <span>الدكتور أسامة عادل العنتري</span>
+    </div>
 
-    // موسيقى شرقية خفيفة مولدة بالكود - بدون ملف MP3 وبدون حقوق
-    const melody = [
-      392,440,493.88,523.25,493.88,440,392,349.23,
-      392,440,523.25,587.33,523.25,493.88,440,392,
-      329.63,349.23,392,440,392,349.23,329.63,293.66
-    ];
+    <div class="date-box">
+      <div class="date-main">السبت 27 / 6 / 2026</div>
+      <div class="date-sub">الساعة 7:00 مساءً</div>
+    </div>
 
-    function playTone(freq, duration=0.38){
-      if(!audioCtx) return;
-      const now = audioCtx.currentTime;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      const filter = audioCtx.createBiquadFilter();
+    <div class="countdown">
+      <div class="time-card"><strong id="days">0</strong><small>يوم</small></div>
+      <div class="time-card"><strong id="hours">0</strong><small>ساعة</small></div>
+      <div class="time-card"><strong id="minutes">0</strong><small>دقيقة</small></div>
+      <div class="time-card"><strong id="seconds">0</strong><small>ثانية</small></div>
+    </div>
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, now);
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(1200, now);
+    <div class="venue">قاعة الرومانية - قرية الميرلاند</div>
 
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.14, now + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    <p class="note">
+      حضوركم يشرفنا ويتمم فرحتنا، ونسأل الله أن يجعلها ليلة عامرة بالبهجة والسعادة.
+    </p>
 
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(masterGain);
-      osc.start(now);
-      osc.stop(now + duration + 0.03);
-    }
+    <div class="actions">
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=قاعة%20الرومانية%20قرية%20الميرلاند" target="_blank">افتح اللوكيشن</a>
+      <a class="btn secondary" href="https://wa.me/?text=بإذن%20الله%20حاضر%20حفل%20زفاف%20الدكتور%20أسامة%20والآنسة%20N" target="_blank">تأكيد الحضور</a>
+    </div>
+  </div>
+</main>
 
-    function playBeat(){
-      if(!audioCtx) return;
-      const now = audioCtx.currentTime;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+<div class="footer">N & Osama Wedding Invitation</div>
 
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(115, now);
-      gain.gain.setValueAtTime(0.08, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+<script>
+const intro = document.getElementById('intro');
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const petals = document.getElementById('petals');
 
-      osc.connect(gain);
-      gain.connect(masterGain);
-      osc.start(now);
-      osc.stop(now + 0.13);
-    }
+function openInvitation(){
+  intro.classList.add('hide');
+  musicBtn.classList.add('show');
+  startPetals();
+  music.play().then(()=>{
+    musicBtn.textContent='🔇';
+  }).catch(()=>{
+    musicBtn.textContent='🎵';
+  });
+  setTimeout(()=>{intro.style.display='none'},900);
+}
 
-    function startMusic(){
-      if(musicPlaying) return;
-      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = masterGain || audioCtx.createGain();
-      masterGain.gain.value = 0.42;
-      masterGain.connect(audioCtx.destination);
-      musicPlaying = true;
-      musicBtn.textContent = '🔇';
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    musicBtn.textContent='🔇';
+  }else{
+    music.pause();
+    musicBtn.textContent='🎵';
+  }
+}
 
-      const loop = () => {
-        if(!musicPlaying) return;
-        const freq = melody[noteIndex % melody.length];
-        playTone(freq, 0.36);
-        if(noteIndex % 2 === 0) playBeat();
-        noteIndex++;
-        musicTimer = setTimeout(loop, 430);
-      };
-      loop();
-    }
+const target = new Date('2026-06-27T19:00:00+03:00').getTime();
 
-    function stopMusic(){
-      musicPlaying = false;
-      clearTimeout(musicTimer);
-      musicBtn.textContent = '🎵';
-    }
+function updateCountdown(){
+  const now = new Date().getTime();
+  let diff = target - now;
+  if(diff < 0) diff = 0;
 
-    function toggleMusic(){
-      if(musicPlaying) stopMusic();
-      else startMusic();
-    }
+  document.getElementById('days').textContent =
+    Math.floor(diff/(1000*60*60*24));
 
-    function openInvitation(){
-      intro.classList.add('hide');
-      musicBtn.classList.add('show');
-      startMusic();
-      setTimeout(()=>{intro.style.display='none'}, 900);
-    }
+  document.getElementById('hours').textContent =
+    Math.floor((diff%(1000*60*60*24))/(1000*60*60));
 
-    const target = new Date('2026-06-27T19:00:00+03:00').getTime();
-    function updateCountdown(){
-      const now = new Date().getTime();
-      let diff = target - now;
-      if(diff < 0) diff = 0;
-      const days = Math.floor(diff / (1000*60*60*24));
-      const hours = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
-      const minutes = Math.floor((diff % (1000*60*60))/(1000*60));
-      const seconds = Math.floor((diff % (1000*60))/1000);
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-    }
-    updateCountdown(); setInterval(updateCountdown,1000);
+  document.getElementById('minutes').textContent =
+    Math.floor((diff%(1000*60*60))/(1000*60));
 
-    const petals = document.querySelector('.petals');
-    const signs = ['✦','❦','✧','•'];
-    for(let i=0;i<26;i++){
-      const s=document.createElement('span');
-      s.textContent=signs[Math.floor(Math.random()*signs.length)];
-      s.style.left=Math.random()*100+'vw';
-      s.style.animationDuration=(7+Math.random()*10)+'s';
-      s.style.animationDelay=(Math.random()*8)+'s';
-      s.style.fontSize=(12+Math.random()*16)+'px';
-      petals.appendChild(s);
-    }
-  </script>
+  document.getElementById('seconds').textContent =
+    Math.floor((diff%(1000*60))/1000);
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+function startPetals(){
+  if(petals.dataset.started) return;
+  petals.dataset.started = "true";
+
+  const flowers = ['🌸','🌺','🌷','🌼','💮'];
+
+  for(let i=0;i<45;i++){
+    const s = document.createElement('span');
+    s.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.animationDuration = (8 + Math.random()*12) + 's';
+    s.style.animationDelay = (Math.random()*8) + 's';
+    s.style.fontSize = (13 + Math.random()*18) + 'px';
+    petals.appendChild(s);
+  }
+}
+</script>
+
 </body>
 </html>
